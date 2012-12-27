@@ -10,5 +10,27 @@
   <%= @voting.description %>
 </p>
 
+<p>
+	<b>Vote alternatives:</b>
+</p>
+
+<% unless @voting.vote_alternatives.blank?%>
+<ul>
+	<% @voting.vote_alternatives.each do |alt| %>
+	<li>
+		<h3><%= alt.title%></h3>
+		<p><%= link_to 'Vote', vote_meeting_voting_vote_alternative_path(alt.voting.meeting, alt.voting, alt)%>
+			(<%= alt.votes%> votes)</p>
+	</li>
+	<% end %>
+</ul>
+<% else %>
+<p>No alternatives</p>
+<% end %>
+
+<p>
+	<%= link_to 'Add Vote alternative', new_meeting_voting_vote_alternative_path(@voting.meeting, @voting) %>
+</p>
+
 <%= link_to 'Edit', edit_meeting_voting_path(@voting.meeting) %> |
 <%= link_to 'Back', meeting_votings_path(@voting.meeting) %>

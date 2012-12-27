@@ -1,0 +1,27 @@
+<h1>Listing vote_alternatives</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Identifier</th>
+    <th>Voting</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @vote_alternatives.each do |vote_alternative| %>
+  <tr>
+    <td><%= vote_alternative.title %></td>
+    <td><%= vote_alternative.identifier %></td>
+    <td><%= vote_alternative.voting_id %></td>
+    <td><%= link_to 'Show', vote_alternative %></td>
+    <td><%= link_to 'Edit', edit_vote_alternative_path(vote_alternative) %></td>
+    <td><%= link_to 'Destroy', vote_alternative, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Vote alternative', new_vote_alternative_path %>

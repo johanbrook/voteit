@@ -2,7 +2,11 @@ Voteit::Application.routes.draw do
   root :to => "meetings#index"
   
   resources :meetings do 
-    resources :votings
+    resources :votings do 
+      resources :vote_alternatives do
+        get 'vote', :on => :member
+      end
+    end
   end
 
   # The priority is based upon order of creation:

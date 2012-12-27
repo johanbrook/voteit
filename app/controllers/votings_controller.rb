@@ -14,6 +14,8 @@ class VotingsController < ApplicationController
   # GET /votings/1.json
   def show
     @voting = Voting.find(params[:id])
+    #TODO why not order?
+    @alternatives = @voting.vote_alternatives.order("title ASC")
 
     respond_to do |format|
       format.html # show.html.erb

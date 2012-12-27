@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @vote_alternative.title %>
+</p>
+
+<p>
+  <b>Identifier:</b>
+  <%= @vote_alternative.identifier %>
+</p>
+
+<p>
+  <b>Voting:</b>
+  <%= @vote_alternative.voting_id %>
+</p>
+
+<%= link_to 'Edit', edit_vote_alternative_path(@vote_alternative) %> |
+<%= link_to 'Back', vote_alternatives_path %>

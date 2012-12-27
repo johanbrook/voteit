@@ -12,17 +12,5 @@
 # It's strongly recommended to check this file into your version control system.
 
 ActiveRecord::Schema.define(:version => 0) do
-	create_table :meetings, :force => true do |t|
-	  t.string :period
 
-	  t.timestamps
-	end
-
-	create_table :votings, :force => true do |t|
-	  t.string :title
-	  t.text :description
-	  t.integer :meeting_id
-
-	  t.timestamps
-	end
 end
