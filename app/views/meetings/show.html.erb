@@ -1,0 +1,8 @@
+<p id="notice"><%= notice %></p>
+
+<h2>Votings for <%= @meeting.period%> meeting</h2>
+
+<%= render :template => "votings/index" %>
+
+<%= link_to 'Edit', edit_meeting_path(@meeting) %> |
+<%= link_to 'Back', meetings_path %>

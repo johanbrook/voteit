@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @voting.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @voting.description %>
+</p>
+
+<%= link_to 'Edit', edit_meeting_voting_path(@voting.meeting) %> |
+<%= link_to 'Back', meeting_votings_path(@voting.meeting) %>

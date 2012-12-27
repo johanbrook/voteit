@@ -1,0 +1,30 @@
+<h1>Listing meetings</h1>
+
+<% unless @meetings.blank? %>
+<table>
+  <tr>
+    <th>Period</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @meetings.each do |meeting| %>
+  <tr>
+    <td><%= meeting.period %></td>
+    <td><%= link_to 'Show', meeting %></td>
+    <td><%= link_to 'Edit', edit_meeting_path(meeting) %></td>
+    <td><%= link_to 'Destroy', meeting, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<% else %>
+
+<p>No meetings</p>
+
+<% end %>
+
+<br />
+
+<%= link_to 'New Meeting', new_meeting_path %>

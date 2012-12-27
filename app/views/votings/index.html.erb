@@ -1,0 +1,30 @@
+<% unless @votings.blank? %>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @votings.each do |voting| %>
+  <tr>
+    <td><%= voting.title %></td>
+    <td><%= voting.description %></td>
+    <td><%= link_to 'Show', [voting.meeting, voting] %></td>
+    <td><%= link_to 'Edit', edit_meeting_voting_path(voting.meeting, voting) %></td>
+    <td><%= link_to 'Destroy', [voting.meeting, voting], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<% else %>
+
+<p>No votings</p>
+
+<% end %>
+
+<h3>New voting</h3>
+
+<p><%= link_to 'New Voting', new_meeting_voting_path(@meeting) %></p>
