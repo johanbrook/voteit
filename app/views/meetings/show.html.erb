@@ -6,7 +6,11 @@
 
 <h3>New voting</h3>
 
-<p><%= link_to 'New Voting', new_meeting_voting_path(@meeting) %></p>
+<div class="admin">
+<p>
+	<%= link_to 'New Voting', new_meeting_voting_path(@meeting) %> | 
+	<%= link_to 'Edit', edit_meeting_path(@meeting) %>
+</p>
+</div>
 
-<%= link_to 'Edit', edit_meeting_path(@meeting) %> |
-<%= link_to 'Back', meetings_path %>
+<%= link_to '← All meetings', meetings_path %>

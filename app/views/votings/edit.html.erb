@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', [@voting.meeting, @voting] %> |
-<%= link_to 'Back', meeting_path(@voting.meeting) %>
+<%= link_to "← #{@voting.meeting.period} meeting", meeting_path(@voting.meeting) %> | 
+<%= link_to 'Show', [@voting.meeting, @voting] %>

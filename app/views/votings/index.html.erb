@@ -13,8 +13,8 @@
     <td><%= voting.title %></td>
     <td><%= voting.description %></td>
     <td><%= link_to 'Show', meeting_voting_path(voting.meeting, voting) %></td>
-    <td><%= link_to 'Edit', edit_meeting_voting_path(voting.meeting, voting) %></td>
-    <td><%= link_to 'Destroy', [voting.meeting, voting], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td class="admin"><%= link_to 'Edit', edit_meeting_voting_path(voting.meeting, voting) %></td>
+    <td class="admin"><%= link_to 'Destroy', [voting.meeting, voting], method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>

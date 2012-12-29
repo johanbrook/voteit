@@ -1,4 +1,4 @@
-<%= form_for([@vote_alternative.voting.meeting, @vote_alternative.voting, @vote_alternative]) do |f| %>
+<%= form_for([@vote_alternative.voting, @vote_alternative]) do |f| %>
   <% if @vote_alternative.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@vote_alternative.errors.count, "error") %> prohibited this vote_alternative from being saved:</h2>

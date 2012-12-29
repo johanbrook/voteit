@@ -46,7 +46,7 @@ class VoteAlternativesController < ApplicationController
 
     respond_to do |format|
       if @vote_alternative.save
-        format.html { redirect_to [@voting.meeting, @voting, @vote_alternative], notice: 'Vote alternative was successfully created.' }
+        format.html { redirect_to @voting, notice: 'Vote alternative was successfully created.' }
         format.json { render json: @vote_alternative, status: :created, location: @vote_alternative }
       else
         format.html { render action: "new" }
@@ -79,7 +79,7 @@ class VoteAlternativesController < ApplicationController
     @vote_alternative.destroy
 
     respond_to do |format|
-      format.html { redirect_to meeting_votings_url }
+      format.html { redirect_to @vote_alternative.voting }
       format.json { head :no_content }
     end
   end
