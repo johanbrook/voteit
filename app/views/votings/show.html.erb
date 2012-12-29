@@ -28,7 +28,7 @@
 
 		<p>
 		<% if @voting.open %>
-		<%= link_to 'Vote', voting_vote_path(alt.voting.meeting, alt.voting, :alt => alt.id)%> |
+		<%= link_to 'Vote', voting_vote_path(alt.voting, :alt => alt.id)%> |
 		<% end %>
 		<%= link_to 'Remove alternative', [@voting, alt], :method => :delete, :class => "admin", :data => {:confirm => "Sure?"} %>
 		</p>
