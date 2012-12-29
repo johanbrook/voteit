@@ -10,11 +10,12 @@
   <%= @voting.description %>
 </p>
 
+<% if @voting.open %>
+	<% unless @voting.vote_alternatives.blank?%>
 <p>
 	<b>Vote alternatives:</b>
 </p>
 
-<% unless @voting.vote_alternatives.blank?%>
 <ul>
 	<% @voting.vote_alternatives.each do |alt| %>
 	<li>
@@ -24,9 +25,18 @@
 	</li>
 	<% end %>
 </ul>
+
+	<% else %>
+
+	<p>No alternatives or voting is closed</p>
+
+	<% end %>
+
 <% else %>
-<p>No alternatives</p>
-<% end %>
+
+<p>Voting is closed</p>
+
+<% end%>
 
 <p>
 	<%= link_to 'Add Vote alternative', new_voting_vote_alternative_path(@voting) %>
