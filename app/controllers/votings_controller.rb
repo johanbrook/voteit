@@ -71,7 +71,7 @@ class VotingsController < ApplicationController
 
     respond_with(@voting) do |format|
       if @voting.save
-        format.html { redirect_to [@meeting, @voting], notice: 'Voting was successfully created.' }
+        format.html { redirect_to @meeting, notice: 'Voting was successfully created.' }
         format.json { render json: @voting, status: :created, location: @voting }
       else
         format.html { render "new" }
@@ -88,7 +88,7 @@ class VotingsController < ApplicationController
 
     respond_with(@voting) do |format|
       if @voting.update_attributes(params[:voting])
-        format.html { redirect_to [@meeting, @voting], notice: 'Voting was successfully updated.' }
+        format.html { redirect_to @meeting, notice: 'Voting was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -104,7 +104,7 @@ class VotingsController < ApplicationController
     @voting.destroy
 
     respond_with(@voting) do |format|
-      format.html { redirect_to meeting_votings_url }
+      format.html { redirect_to @voting.meeting }
       format.json { head :no_content }
     end
   end
