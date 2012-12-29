@@ -10,18 +10,28 @@
   <%= @voting.description %>
 </p>
 
-<% if @voting.open %>
+<% unless @voting.open %>
+
+<p>Voting is closed</p>
+
+<% end%>
+
 	<% unless @voting.vote_alternatives.blank?%>
 <p>
-	<b>Vote alternatives:</b>
+	<strong>Alternatives</strong>
 </p>
 
 <ul>
 	<% @voting.vote_alternatives.each do |alt| %>
 	<li>
-		<h3><%= alt.title%></h3>
-		<p><%= link_to 'Vote', meeting_voting_vote_path(alt.voting.meeting, alt.voting, :alt => alt.id)%>
-			(<%= alt.votes%> votes)</p>
+		<h3><%= alt.title%> (<%= alt.votes%> votes)</h3>
+
+		<p>
+		<% if @voting.open %>
+		<%= link_to 'Vote', voting_vote_path(alt.voting.meeting, alt.voting, :alt => alt.id)%> |
+		<% end %>
+		<%= link_to 'Remove alternative', [@voting, alt], :method => :delete, :class => "admin", :data => {:confirm => "Sure?"} %>
+		</p>
 	</li>
 	<% end %>
 </ul>
@@ -32,15 +42,19 @@
 
 	<% end %>
 
-<% else %>
+<div class="admin">
+	<p>
+		<%= link_to 'Add Vote alternative', new_voting_vote_alternative_path(@voting) %> | 
 
-<p>Voting is closed</p>
+		<%= link_to 'Edit', edit_voting_path(@voting) %> | 
 
-<% end%>
+		<% if @voting.open %>
+			<%= link_to 'Close voting', voting_close_path(@voting) %>
+		<% else %>
+			<%= link_to 'Open voting', voting_open_path(@voting) %>
+		<%end%>
+	</p>
 
-<p>
-	<%= link_to 'Add Vote alternative', new_voting_vote_alternative_path(@voting) %>
-</p>
+</div>
 
-<%= link_to 'Edit', edit_voting_path(@voting) %> |
-<%= link_to 'Back', meeting_path(@voting.meeting) %>
+<%= link_to "← #{@voting.meeting.period} meeting", meeting_path(@voting.meeting) %>

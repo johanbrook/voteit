@@ -3,12 +3,13 @@ Voteit::Application.routes.draw do
   
   resources :votings, :except => [:new, :create] do
     resources :vote_alternatives, :except => [:show, :index]
+    get 'vote' => "votings#vote", :as => :vote
+    get 'close' => "votings#close", :as => :close
+    get 'open' => "votings#open", :as => :open
   end
 
   resources :meetings do 
-    resources :votings do 
-      get 'vote' => "votings#vote", :as => :vote
-    end
+    resources :votings
   end
 
   

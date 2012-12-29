@@ -21,6 +21,26 @@ class VotingsController < ApplicationController
     end
   end
 
+  def open
+    @voting = Voting.find(params[:voting_id])
+    @voting.update_attribute :open, true
+
+    respond_to do |format|
+      format.html { redirect_to [@voting.meeting, @voting], :notice => "Voting opened" }
+      format.json { head :no_content }
+    end
+  end
+
+  def close
+    @voting = Voting.find(params[:voting_id])
+    @voting.update_attribute :open, false
+
+    respond_to do |format|
+      format.html { redirect_to [@voting.meeting, @voting], :notice => "Voting closed" }
+      format.json { head :no_content }
+    end
+  end
+
   # GET /votings/1
   # GET /votings/1.json
   def show
