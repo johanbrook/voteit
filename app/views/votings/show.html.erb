@@ -16,13 +16,13 @@
 
 <% end%>
 
-	<% unless @voting.vote_alternatives.blank?%>
+<% unless @alternatives.blank?%>
 <p>
 	<strong>Alternatives</strong>
 </p>
 
 <ul>
-	<% @voting.vote_alternatives.each do |alt| %>
+	<% @alternatives.each do |alt| %>
 	<li>
 		<h3><%= alt.title%> (<%= alt.votes%> votes)</h3>
 
@@ -36,11 +36,11 @@
 	<% end %>
 </ul>
 
-	<% else %>
+<% else %>
 
-	<p>No alternatives or voting is closed</p>
+<p>No alternatives or voting is closed</p>
 
-	<% end %>
+<% end %>
 
 <div class="admin">
 	<p>
