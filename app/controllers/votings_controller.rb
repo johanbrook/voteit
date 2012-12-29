@@ -1,13 +1,12 @@
 class VotingsController < ApplicationController
+  respond_to :html, :json
+
   # GET /votings
   # GET /votings.json
   def index
     @votings = Voting.all
 
-    respond_to do |format|
-      format.html
-      format.json { render json: @votings }
-    end
+    respond_with @votings
   end
 
   def vote
@@ -15,7 +14,7 @@ class VotingsController < ApplicationController
     @vote_alternative = @voting.vote_alternatives.find(params[:alt])
     @vote_alternative.update_attribute :votes, @vote_alternative.votes + 1
 
-    respond_to do |format|
+    respond_with(@voting) do |format|
       format.html { redirect_to [@voting.meeting, @voting] }
       format.json { head :no_content }
     end
@@ -25,7 +24,7 @@ class VotingsController < ApplicationController
     @voting = Voting.find(params[:voting_id])
     @voting.update_attribute :open, true
 
-    respond_to do |format|
+    respond_with(@voting) do |format|
       format.html { redirect_to [@voting.meeting, @voting], :notice => "Voting opened" }
       format.json { head :no_content }
     end
@@ -35,7 +34,7 @@ class VotingsController < ApplicationController
     @voting = Voting.find(params[:voting_id])
     @voting.update_attribute :open, false
 
-    respond_to do |format|
+    respond_with(@voting) do |format|
       format.html { redirect_to [@voting.meeting, @voting], :notice => "Voting closed" }
       format.json { head :no_content }
     end
@@ -45,13 +44,9 @@ class VotingsController < ApplicationController
   # GET /votings/1.json
   def show
     @voting = Voting.find(params[:id])
-    #TODO y u no order?
     @alternatives = @voting.vote_alternatives.order("votes DESC")
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @voting }
-    end
+    respond_with @voting
   end
 
   # GET /votings/new
@@ -60,10 +55,7 @@ class VotingsController < ApplicationController
     @meeting = Meeting.find(params[:meeting_id])
     @voting = @meeting.votings.build
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @voting }
-    end
+    respond_with @voting
   end
 
   # GET /votings/1/edit
@@ -77,7 +69,7 @@ class VotingsController < ApplicationController
     @meeting = Meeting.find(params[:meeting_id])
     @voting = @meeting.votings.build(params[:voting])
 
-    respond_to do |format|
+    respond_with(@voting) do |format|
       if @voting.save
         format.html { redirect_to [@meeting, @voting], notice: 'Voting was successfully created.' }
         format.json { render json: @voting, status: :created, location: @voting }
@@ -94,7 +86,7 @@ class VotingsController < ApplicationController
     @voting = Voting.find(params[:id])
     @meeting = @voting.meeting
 
-    respond_to do |format|
+    respond_with(@voting) do |format|
       if @voting.update_attributes(params[:voting])
         format.html { redirect_to [@meeting, @voting], notice: 'Voting was successfully updated.' }
         format.json { head :no_content }
@@ -111,7 +103,7 @@ class VotingsController < ApplicationController
     @voting = Voting.find(params[:id])
     @voting.destroy
 
-    respond_to do |format|
+    respond_with(@voting) do |format|
       format.html { redirect_to meeting_votings_url }
       format.json { head :no_content }
     end

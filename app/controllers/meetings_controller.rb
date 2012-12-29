@@ -1,13 +1,12 @@
 class MeetingsController < ApplicationController
+  respond_to :html, :json
+
   # GET /meetings
   # GET /meetings.json
   def index
     @meetings = Meeting.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @meetings }
-    end
+    respond_with @meetings
   end
 
   # GET /meetings/1
@@ -16,10 +15,7 @@ class MeetingsController < ApplicationController
     @meeting = Meeting.find(params[:id])
     @votings = @meeting.votings
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @meeting }
-    end
+    respond_with @meeting
   end
 
   # GET /meetings/new
@@ -27,10 +23,7 @@ class MeetingsController < ApplicationController
   def new
     @meeting = Meeting.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @meeting }
-    end
+    respond_with @meeting
   end
 
   # GET /meetings/1/edit
@@ -43,7 +36,7 @@ class MeetingsController < ApplicationController
   def create
     @meeting = Meeting.new(params[:meeting])
 
-    respond_to do |format|
+    respond_with(@meeting) do |format|
       if @meeting.save
         format.html { redirect_to @meeting, notice: 'Meeting was successfully created.' }
         format.json { render json: @meeting, status: :created, location: @meeting }
@@ -59,7 +52,7 @@ class MeetingsController < ApplicationController
   def update
     @meeting = Meeting.find(params[:id])
 
-    respond_to do |format|
+    respond_with(@meeting) do |format|
       if @meeting.update_attributes(params[:meeting])
         format.html { redirect_to @meeting, notice: 'Meeting was successfully updated.' }
         format.json { head :no_content }
@@ -76,7 +69,7 @@ class MeetingsController < ApplicationController
     @meeting = Meeting.find(params[:id])
     @meeting.destroy
 
-    respond_to do |format|
+    respond_with(@meeting) do |format|
       format.html { redirect_to meetings_url }
       format.json { head :no_content }
     end

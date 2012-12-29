@@ -1,13 +1,12 @@
 class VoteAlternativesController < ApplicationController
+  respond_to :html, :json
+
   # GET /vote_alternatives
   # GET /vote_alternatives.json
   def index
     @vote_alternatives = VoteAlternative.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @vote_alternatives }
-    end
+    respond_with @vote_alternatives
   end
 
   # GET /vote_alternatives/1
@@ -15,10 +14,7 @@ class VoteAlternativesController < ApplicationController
   def show
     @vote_alternative = VoteAlternative.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @vote_alternative }
-    end
+    respond_with @vote_alternatives
   end
 
   # GET /vote_alternatives/new
@@ -27,10 +23,7 @@ class VoteAlternativesController < ApplicationController
     @voting = Voting.find(params[:voting_id])
     @vote_alternative = @voting.vote_alternatives.build
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @vote_alternative }
-    end
+    respond_with @vote_alternatives
   end
 
   # GET /vote_alternatives/1/edit
@@ -44,7 +37,7 @@ class VoteAlternativesController < ApplicationController
     @voting = Voting.find(params[:voting_id])
     @vote_alternative = @voting.vote_alternatives.build(params[:vote_alternative])
 
-    respond_to do |format|
+    respond_with(@vote_alternatives) do |format|
       if @vote_alternative.save
         format.html { redirect_to @voting, notice: 'Vote alternative was successfully created.' }
         format.json { render json: @vote_alternative, status: :created, location: @vote_alternative }
@@ -61,7 +54,7 @@ class VoteAlternativesController < ApplicationController
     @vote_alternative = VoteAlternative.find(params[:id])
     @voting = @vote_alternative.voting
 
-    respond_to do |format|
+    respond_with(@vote_alternatives) do |format|
       if @vote_alternative.update_attributes(params[:vote_alternative])
         format.html { redirect_to [@voting.meeting, @voting, @vote_alternative], notice: 'Vote alternative was successfully updated.' }
         format.json { head :no_content }
@@ -78,7 +71,7 @@ class VoteAlternativesController < ApplicationController
     @vote_alternative = VoteAlternative.find(params[:id])
     @vote_alternative.destroy
 
-    respond_to do |format|
+    respond_with(@vote_alternatives) do |format|
       format.html { redirect_to @vote_alternative.voting }
       format.json { head :no_content }
     end
