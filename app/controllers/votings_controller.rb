@@ -15,6 +15,7 @@ class VotingsController < ApplicationController
     @vote_alternative.update_attribute :votes, @vote_alternative.votes + 1
 
     respond_with(@voting) do |format|
+      format.js
       format.html { redirect_to [@voting.meeting, @voting] }
       format.json { head :no_content }
     end
