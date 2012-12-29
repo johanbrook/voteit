@@ -10,16 +10,6 @@ class VoteAlternativesController < ApplicationController
     end
   end
 
-  def vote
-    @vote_alternative = VoteAlternative.find(params[:id])
-    @vote_alternative.update_attribute :votes, @vote_alternative.votes + 1
-
-    respond_to do |format|
-      format.html { redirect_to [@vote_alternative.voting.meeting, @vote_alternative.voting] }
-      format.json { head :no_content }
-    end
-  end
-
   # GET /vote_alternatives/1
   # GET /vote_alternatives/1.json
   def show

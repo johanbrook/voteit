@@ -1,13 +1,17 @@
 Voteit::Application.routes.draw do
   root :to => "meetings#index"
   
+  resources :votings, :except => [:new, :create] do
+    resources :vote_alternatives, :except => [:show, :index]
+  end
+
   resources :meetings do 
     resources :votings do 
-      resources :vote_alternatives do
-        get 'vote', :on => :member
-      end
+      get 'vote' => "votings#vote", :as => :vote
     end
   end
+
+  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

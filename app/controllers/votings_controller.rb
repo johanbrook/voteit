@@ -5,8 +5,19 @@ class VotingsController < ApplicationController
     @votings = Voting.all
 
     respond_to do |format|
-      format.html { redirect_to meeting_path(params[:meeting_id]) }
+      format.html
       format.json { render json: @votings }
+    end
+  end
+
+  def vote
+    @voting = Voting.find(params[:voting_id])
+    @vote_alternative = @voting.vote_alternatives.find(params[:alt])
+    @vote_alternative.update_attribute :votes, @vote_alternative.votes + 1
+
+    respond_to do |format|
+      format.html { redirect_to [@voting.meeting, @voting] }
+      format.json { head :no_content }
     end
   end
 
@@ -14,8 +25,8 @@ class VotingsController < ApplicationController
   # GET /votings/1.json
   def show
     @voting = Voting.find(params[:id])
-    #TODO why not order?
-    @alternatives = @voting.vote_alternatives.order("title ASC")
+    #TODO y u no order?
+    @alternatives = @voting.vote_alternatives.order("votes DESC")
 
     respond_to do |format|
       format.html # show.html.erb

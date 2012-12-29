@@ -19,7 +19,7 @@
 	<% @voting.vote_alternatives.each do |alt| %>
 	<li>
 		<h3><%= alt.title%></h3>
-		<p><%= link_to 'Vote', vote_meeting_voting_vote_alternative_path(alt.voting.meeting, alt.voting, alt)%>
+		<p><%= link_to 'Vote', meeting_voting_vote_path(alt.voting.meeting, alt.voting, :alt => alt.id)%>
 			(<%= alt.votes%> votes)</p>
 	</li>
 	<% end %>
@@ -29,8 +29,8 @@
 <% end %>
 
 <p>
-	<%= link_to 'Add Vote alternative', new_meeting_voting_vote_alternative_path(@voting.meeting, @voting) %>
+	<%= link_to 'Add Vote alternative', new_voting_vote_alternative_path(@voting) %>
 </p>
 
-<%= link_to 'Edit', edit_meeting_voting_path(@voting.meeting) %> |
-<%= link_to 'Back', meeting_votings_path(@voting.meeting) %>
+<%= link_to 'Edit', edit_voting_path(@voting) %> |
+<%= link_to 'Back', meeting_path(@voting.meeting) %>
