@@ -6,6 +6,7 @@ Voteit::Application.routes.draw do
 
   get 'login' => "sessions#new", :as => :login
   get 'logout' => "sessions#destroy", :as => :logout
+  get 'register' => "users#new", :as => :register
 
   resources :votings, :except => [:new, :create] do
     resources :vote_alternatives, :except => [:show, :index]
