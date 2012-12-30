@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  nick: MyString
+  password_digest: MyString
+  year: 1
+
+two:
+  nick: MyString
+  password_digest: MyString
+  year: 1

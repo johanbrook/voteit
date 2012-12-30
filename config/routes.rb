@@ -1,4 +1,6 @@
 Voteit::Application.routes.draw do
+  resources :users
+
   root :to => "meetings#index"
   
   resources :votings, :except => [:new, :create] do
