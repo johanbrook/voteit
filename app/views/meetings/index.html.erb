@@ -1,4 +1,16 @@
-<h1>Listing meetings</h1>
+<h1>VoteIT</h1>
+
+<% if is_loggedin? %>
+<p>
+  <strong>Current user:</strong> <%= current_user.nick%> |
+  <%= link_to 'Log out', logout_path%>
+</p>
+<% else %>
+
+<%= render :template => "sessions/new" %>
+
+<% end %>
+
 
 <% unless @meetings.blank? %>
 <table>
@@ -26,5 +38,8 @@
 <% end %>
 
 <div class="admin">
-  <p><%= link_to 'New Meeting', new_meeting_path %></p>
+  <p>
+    <%= link_to 'New Meeting', new_meeting_path %> |
+    <%= link_to 'New user', new_user_path %>
+  </p>
 </div>

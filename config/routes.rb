@@ -1,8 +1,12 @@
 Voteit::Application.routes.draw do
-  resources :users
-
   root :to => "meetings#index"
-  
+    
+  resources :users
+  resources :sessions, :only => [:new, :create, :destroy]
+
+  get 'login' => "sessions#new", :as => :login
+  get 'logout' => "sessions#destroy", :as => :logout
+
   resources :votings, :except => [:new, :create] do
     resources :vote_alternatives, :except => [:show, :index]
     get 'vote' => "votings#vote", :as => :vote

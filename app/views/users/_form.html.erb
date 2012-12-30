@@ -16,9 +16,13 @@
     <%= f.text_field :nick %>
   </div>
   <div class="field">
-    <%= f.label :password_digest %><br />
-    <%= f.text_field :password_digest %>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
   </div>
+  <div class="field">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation %>
+    </div>
   <div class="field">
     <%= f.label :year %><br />
     <%= f.number_field :year %>
