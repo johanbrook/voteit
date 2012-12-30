@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authorize
+  before_filter :authorize, :except => [:new, :create]
   before_filter :authorize_admin, :only => [:show, :destroy]
 
   # GET /users
