@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121229215758) do
+ActiveRecord::Schema.define(:version => 20121230021329) do
 
   create_table "meetings", :force => true do |t|
     t.string   "period"
@@ -23,8 +23,9 @@ ActiveRecord::Schema.define(:version => 20121229215758) do
     t.string   "nick"
     t.string   "password_digest"
     t.integer  "year"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+    t.boolean  "is_admin",        :default => false
   end
 
   create_table "vote_alternatives", :force => true do |t|

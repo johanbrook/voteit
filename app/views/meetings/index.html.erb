@@ -3,7 +3,8 @@
 <% if is_loggedin? %>
 <p>
   <strong>Current user:</strong> <%= current_user.nick%> |
-  <%= link_to 'Log out', logout_path%>
+  <%= link_to 'Log out', logout_path%><br />
+  <strong>Is admin:</strong> <%= is_admin?%>
 </p>
 <% else %>
 
