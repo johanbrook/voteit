@@ -1,1 +1,19 @@
-$("#alt-<%= @vote_alternative.id%>-votes").html("<%= @vote_alternative.votes %>");
+<% if @vote.valid? %>
+	$("#alt-<%= @vote_alternative.id%>")
+		.find(".alt-votes").html("<%= @vote_alternative.votes %>");
+
+<% else %>
+	$("#notice").remove();
+	
+	var html = "<ul id='notice'>",
+		errors = <%= @vote.error_messages_as_json.html_safe %>;
+
+	errors.forEach(function(e) {
+		html += '<li>'+ e +'</li>';
+	});
+
+	html += "</ul>";
+
+	$("body").prepend(html);
+
+<% end %>

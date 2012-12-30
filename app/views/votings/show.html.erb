@@ -22,11 +22,11 @@
 <ul>
 	<% @alternatives.each do |alt| %>
 	<li id="alt-<%= alt.id%>">
-		<h3><%= alt.title%> (<span id="alt-<%= alt.id %>-votes"><%= alt.votes%></span> votes)</h3>
+		<h3><%= alt.title%> (<span class="alt-votes" id="alt-<%= alt.id %>-votes"><%= alt.votes%></span> votes)</h3>
 
 		<p>
 		<% if @voting.open %>
-		<%= link_to 'Vote', voting_vote_path(alt.voting, :alt => alt.id), :remote => true %> |
+		<%= link_to 'Vote', voting_vote_path(alt.voting, :alt => alt.id), :class => "vote-btn", :remote => true %> |
 		<% end %>
 		<%= link_to 'Remove alternative', [@voting, alt], 
 				:method => :delete, 
