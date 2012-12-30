@@ -14,13 +14,12 @@ class VotingsController < ApplicationController
   def vote
     @voting = Voting.find(params[:voting_id])
     @vote_alternative = @voting.vote_alternatives.find(params[:alt])
-
     @vote = UserVote.new(:user => current_user, :voting => @voting)
     
     if @vote.save
       @vote_alternative.update_attribute :votes, @vote_alternative.votes + 1      
     else
-      flash[:notice] = @vote.error_messages_as_json
+      flash.now.alert = @vote.error_messages_as_json
     end
 
     respond_with(@voting) do |format|
