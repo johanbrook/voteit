@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  before_filter :authorize
+  before_filter :authorize_admin, :only => [:show, :destroy]
+
   # GET /users
   # GET /users.json
   def index

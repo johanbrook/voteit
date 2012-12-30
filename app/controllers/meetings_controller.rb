@@ -1,4 +1,6 @@
 class MeetingsController < ApplicationController
+  before_filter :authorize, :except => :index
+  before_filter :authorize_admin, :except => [:index, :show]
   respond_to :html, :json
 
   # GET /meetings

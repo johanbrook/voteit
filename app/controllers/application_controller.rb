@@ -17,7 +17,12 @@ class ApplicationController < ActionController::Base
   	end
 
 	def authorize
-  		session[:redirect] = root_url
-  		redirect_to login_path, :alert => "Not authorized" if current_user.nil?
+  		session[:redirect] = root_path
+  		redirect_to login_path, :alert => "Not authorized" unless is_loggedin?
+  	end
+
+  	def authorize_admin
+  		session[:redirect] = root_path
+  		redirect_to login_path, :alert => "Not admin" unless is_admin?
   	end
 end

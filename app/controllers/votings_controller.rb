@@ -1,4 +1,6 @@
 class VotingsController < ApplicationController
+  before_filter :authorize
+  before_filter :authorize_admin, :except => [:index, :show, :vote]
   respond_to :html, :json
 
   # GET /votings
