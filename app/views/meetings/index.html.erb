@@ -6,12 +6,6 @@
   <%= link_to 'Log out', logout_path%><br />
   <strong>Is admin:</strong> <%= is_admin?%>
 </p>
-<% else %>
-
-<%= render :template => "sessions/new" %>
-
-<% end %>
-
 
 <% unless @meetings.blank? %>
 <table>
@@ -41,6 +35,13 @@
 <div class="admin">
   <p>
     <%= link_to 'New Meeting', new_meeting_path %> |
-    <%= link_to 'New user', new_user_path %>
+    <%= link_to 'New user', new_user_path %> |
+    <%= link_to 'All users', users_path %> 
   </p>
 </div>
+
+<% else %>
+
+<%= render :template => "sessions/new" %>
+
+<% end %>
