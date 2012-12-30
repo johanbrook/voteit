@@ -11,6 +11,38 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20121229215758) do
+
+  create_table "meetings", :force => true do |t|
+    t.string   "period"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "nick"
+    t.string   "password_digest"
+    t.integer  "year"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  create_table "vote_alternatives", :force => true do |t|
+    t.string   "title"
+    t.string   "identifier"
+    t.integer  "voting_id"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.integer  "votes",      :default => 0
+  end
+
+  create_table "votings", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "meeting_id"
+    t.boolean  "open",        :default => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+  end
 
 end
