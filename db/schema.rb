@@ -11,13 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121230215036) do
+ActiveRecord::Schema.define(:version => 20121231005726) do
 
   create_table "meetings", :force => true do |t|
     t.string   "period"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "slug"
   end
+
+  add_index "meetings", ["slug"], :name => "index_meetings_on_slug"
 
   create_table "user_votes", :force => true do |t|
     t.integer  "voting_id"
