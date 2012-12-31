@@ -9,7 +9,7 @@ gem 'pg'
 gem 'bcrypt-ruby'
 
 group :production do
-	gem 'thin'
+	gem 'unicorn'
 end
 
 
